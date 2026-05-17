@@ -1,0 +1,51 @@
+
+.sort-toggle-icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+
+.sort-toggle-icon::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  border-radius: 999px;
+}
+
+.filter-toggle-icon::before {
+  top: 4px;
+}
+
+.filter-toggle-icon::after {
+  top: 11px;
+}
+
+
+.sort-wrapper {
+  position: relative;
+}
+
+.sort-menu {
+  position: absolute;
+  right: 0;
+  min-width: 220px;
+  padding: 14px 0;
+  border-radius: var(--rounded-md);
+  background: var(--colors-canvas);
+  z-index: 20;
+}
+
+.sort-menu button {
+  width: 100%;
+  padding: 8px 24px;
+  text-align: left;
+  font-size: 16px;
+  color: var(--colors-ink);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.sort-menu button:hover {
+  background: var(--colors-soft-cloud);
+}

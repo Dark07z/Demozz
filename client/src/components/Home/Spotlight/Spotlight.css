@@ -1,0 +1,44 @@
+.spotlight-section {
+  padding: 80px 10px 85px;
+  text-align: center;
+}
+.spotlight-section .spotlight-title {
+  font-family: "Passion One";
+  line-height: 0.5;
+  font-size: 100px;
+}
+.spotlight-section .spotlight-subtitle {
+  margin: 20px auto 30px;
+  font-size: 18px;
+}
+.spotlight-section .spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 5px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.spotlight-section .spotlight-item {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.spotlight-section .spotlight-item img {
+  width: 86px;
+  height: 80px;
+  object-fit: cover;
+  transition: transform 0.25s;
+}
+.spotlight-section .spotlight-item span {
+  color: #111;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 80px;
+  transition: opacity 0.25s;
+}
+.spotlight-section .spotlight-item:hover span {
+  opacity: 0.5;
+}

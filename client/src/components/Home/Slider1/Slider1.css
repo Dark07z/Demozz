@@ -1,0 +1,21 @@
+.Slider-Buttons button {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: #e5e5e5;
+  margin-left: 8px;
+}
+
+.Slider-Buttons button:hover {
+  background-color: #cccccc;
+}
+
+.Slider-Buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.slider1-section .slick-slide {
+  padding: 0 4px;
+}
+
