@@ -43,18 +43,14 @@
 .navbar-main ul li:hover .NewFt {
   justify-content: center;
   z-index: 20;
+  display: flex;
+  transition-duration: 300ms;
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  left: 0;
 }
 
-@media (min-width: 768px) {
-  .navbar-main ul li:hover .NewFt {
-    display: flex;
-    transition-duration: 300ms;
-    background-color: #fff;
-    position: absolute;
-    width: 100%;
-    left: 0;
-  }
-}
 .navbar-main ul li:hover .NewFt li {
   line-height: normal;
 }

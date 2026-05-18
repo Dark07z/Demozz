@@ -1231,7 +1231,7 @@ const Navbar = () => {
             </li>
           </Link>
         </ul>
-        <div className="absolute right-28 hidden lg:block">
+        <div className="absolute right-28 block">
           <svg className="absolute top-1.5 left-1.5 opacity-1 w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M13.962 16.296a6.7 6.7 0 0 1-3.462.954 6.73 6.73 0 0 1-4.773-1.977A6.73 6.73 0 0 1 3.75 10.5c0-1.864.755-3.551 1.977-4.773A6.73 6.73 0 0 1 10.5 3.75c1.864 0 3.551.755 4.773 1.977A6.73 6.73 0 0 1 17.25 10.5a6.7 6.7 0 0 1-.921 3.407c-.517.882-.434 1.988.289 2.711l3.853 3.853" />
           </svg>
