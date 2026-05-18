@@ -83,7 +83,6 @@ const Slider2 = () => {
         </div>
       </div>
 
-      <div className="sport-scroll-container">
       <Slider ref={sliderRef} {...settings}>
         {sportCards.map((item) => (
           <div key={item.title} className="sport-card hover:opacity-90 duration-300 cursor-pointer">
@@ -92,7 +91,6 @@ const Slider2 = () => {
           </div>
         ))}
       </Slider>
-      </div>
     </div>
   );
 };

@@ -5,26 +5,7 @@ const SELECTED_PRODUCT_KEY = "nike-demo-selected-product";
 const CART_STORAGE_KEY = "nike-demo-cart";
 const FAVOURITES_STORAGE_KEY = "nike-demo-favourites";
 
-const parsePrice = (value) => {
-  if (typeof value === "number") {
-    return value;
-  }
-
-  if (typeof value === "string") {
-    const normalizedValue = value.replace(/[^0-9.-]/g, "").replace(/,/g, "");
-    const parsedValue = Number(normalizedValue);
-    return Number.isFinite(parsedValue) ? parsedValue : 0;
-  }
-
-  return 0;
-};
-
-const formatPrice = (value) => new Intl.NumberFormat("vi-VN").format(parsePrice(value));
-
 const readJsonStorage = (key, fallback) => {
-  if (typeof window === "undefined") {
-    return fallback;
-  }
 
   const rawValue = window.localStorage.getItem(key);
   if (!rawValue) {
@@ -85,7 +66,7 @@ const Description = () => {
     if (!selectedProduct) {
       setFeedback({
         type: "error",
-        message: "Please select a product from Men's Shoes first.",
+        message: "Please select a product first.",
       });
       return;
     }
@@ -99,7 +80,6 @@ const Description = () => {
   const visibleImages = useMemo(() => images.slice(1), [images]);
   const sizes = Array.isArray(product?.size) ? product.size : [];
   const activeImage = visibleImages[selectedImage] || visibleImages[0] || "";
-  const activeImageIndex = visibleImages.length ? selectedImage + 1 : 0;
 
   const handlePreviousImage = () => {
     if (!visibleImages.length) {
@@ -176,17 +156,17 @@ const Description = () => {
 
   return (
     <div className="mx-auto max-w-[1200px] px-9 py-14">
-      <div className="grid gap-8 lg:grid-cols-[96px_minmax(0,1fr)_360px]">
-        <div className="order-2 flex flex-row gap-3 overflow-x-auto lg:order-1 lg:flex-col lg:overflow-visible">
+      <div className="grid gap-8 grid-cols-[96px_minmax(0,1fr)_360px]">
+        <div className="flex flex-row gap-3 overflow-x-auto order-1 flex-col">
           {visibleImages.length ? (
             visibleImages.map((image, index) => (
               <button
                 key={`${product._id || product.title}-${index}`}
                 type="button"
                 onClick={() => setSelectedImage(index)}
-                className={`h-18 w-18 flex-none overflow-hidden rounded-md border transition-all lg:h-20 lg:w-20 ${selectedImage === index ? "border-[#111] shadow-[0_0_0_1px_#111]" : "border-transparent bg-[#f2f2f2] hover:border-gray-300"}`}
-              >
-                <img src={image} alt={`${product.title} preview ${index + 2}`} className="h-full w-full object-cover" />
+                className={`h-18 w-18 overflow-hidden rounded-md border transition-all h-20 w-20 ${selectedImage === index ? "border-[#111]" : " hover:border-gray-300"}`}
+              > 
+                <img src={image} className="h-full w-full object-cover" />
               </button>
             ))
           ) : (
@@ -194,8 +174,8 @@ const Description = () => {
           )}
         </div>
 
-        <div className="order-1 lg:order-2">
-          <div className="relative flex items-center justify-center overflow-hidden rounded-[18px] bg-white">
+        <div className="order-2">
+          <div className="relative flex items-center justify-center">
 
             {activeImage ? (
               <img

@@ -14,7 +14,7 @@ const ManProducts = () => {
   }, []);
   const [rawProducts, setRawProducts] = useState([]);
   const [showFilters, setShowFilters] = useState(true);
-  const [sortBy, setSortBy] = useState("featured");
+  const [sortBy, setSortBy] = useState("a-to-z");
   const [sortOpen, setSortOpen] = useState(false);
   const [filters, setFilters] = useState({ genders: [], categories: [], saleOnly: false, maxPrice: null });
 
@@ -66,8 +66,10 @@ const ManProducts = () => {
       sorted.sort((a, b) => normalizePrice(b.Price) - normalizePrice(a.Price));
     } else if (sortBy === "price-low-high") {
       sorted.sort((a, b) => normalizePrice(a.Price) - normalizePrice(b.Price));
-    } else if (sortBy === "newest") {
-      sorted.sort((a, b) => Number(b.Sale) - Number(a.Sale));
+    } else if (sortBy === "a-to-z") {
+      sorted.sort((a, b) => a.Title.localeCompare(b.Title));
+    } else if (sortBy === "z-to-a") {
+      sorted.sort((a, b) => b.Title.localeCompare(a.Title));
     }
 
     return sorted;
@@ -100,7 +102,6 @@ const ManProducts = () => {
       <div className="man-products-toolbar">
         <button className="filter-toggle" type="button" onClick={() => setShowFilters((value) => !value)}>
           {showFilters ? "Hide Filters" : "Show Filters"}
-          <span className="filter-toggle-icon" aria-hidden="true" />
         </button>
 
         <div className="sort-wrapper">
@@ -111,11 +112,11 @@ const ManProducts = () => {
 
           {sortOpen && (
             <div className="sort-menu">
-              <button type="button" onClick={() => { setSortBy("featured"); setSortOpen(false); }}>
-                Featured
+              <button type="button" onClick={() => { setSortBy("a-to-z"); setSortOpen(false); }}>
+                A→Z
               </button>
-              <button type="button" onClick={() => { setSortBy("newest"); setSortOpen(false); }}>
-                Newest
+              <button type="button" onClick={() => { setSortBy("z-to-a"); setSortOpen(false); }}>
+                Z→A
               </button>
               <button type="button" onClick={() => { setSortBy("price-high-low"); setSortOpen(false); }}>
                 Price: High-Low
@@ -129,7 +130,7 @@ const ManProducts = () => {
       </div>
 
       <div className="md:grid md:grid-cols-12">
-        <div className={`${showFilters ? "hidden md:block md:col-span-2" : "hidden"} md:mt-4 md:w-52 md:max-h-screen md:min-h-[50vh] md:overflow-scroll md:overflow-x-hidden md:sticky md:top-10`}>
+        <div className={`${showFilters ? "col-span-2" : "hidden"} mt-4 w-52 max-h-screen overflow-scroll overflow-x-hidden sticky top-10`}>
           <List onToggleCategory={toggleCategory} selectedCategories={filters.categories} />
           <hr className="mt-4" />
           <Gender onToggleGender={toggleGender} selectedGenders={filters.genders} />
@@ -140,7 +141,7 @@ const ManProducts = () => {
           <hr className="mt-4" />
           <Spor onSetSaleOnly={setSaleOnly} saleOnly={filters.saleOnly} />
         </div>
-        <div className={`${showFilters ? "md:col-span-10" : "md:col-span-12"} grid md:grid-cols-3 grid-cols-2 gap-4 h-full`}>
+        <div className={`${showFilters ? "col-span-10" : "col-span-12"} grid md:grid-cols-3 gap-4`}>
           <Card options={visible} />
         </div>
       </div>

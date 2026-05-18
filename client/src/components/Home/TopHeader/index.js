@@ -91,7 +91,7 @@ const TopHeader = () => {
                   </button>
 
                   {isAccountMenuOpen && (
-                    <div className="top-header-account-menu" role="menu" aria-label="Account menu">
+                    <div className="top-header-account-menu">
                       <p className="top-header-account-title">Account</p>
                       <Link to="/profile" className="top-header-account-link">Profile</Link>
                       <Link to="/orders" className="top-header-account-link">Orders</Link>

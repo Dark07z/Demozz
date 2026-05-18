@@ -93,7 +93,7 @@ const Slider1 = () => {
         {products.map((product) => (
           <div key={product.name} className="hover:opacity-70 duration-300 cursor-pointer">
             <img src={product.image} alt={product.alt} />
-            <div className="image-description mt-4 flex flex-col">
+            <div className="mt-4 flex flex-col">
               <span>{product.name}</span>
               <span className="opacity-50">{product.category}</span>
               <span className="mr-10">{product.price}</span>

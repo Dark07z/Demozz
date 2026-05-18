@@ -1,5 +1,5 @@
 :root{
-  /* Colors */
+
   --colors-ink: #111111;
   --colors-canvas: #ffffff;
   --colors-soft-cloud: #f5f5f5;
@@ -13,14 +13,14 @@
   --colors-sale-deep: #780700;
   --colors-success: #007d48;
 
-  /* Radii */
+
   --rounded-none: 0px;
   --rounded-sm: 18px;
   --rounded-md: 24px;
   --rounded-lg: 30px;
   --rounded-full: 9999px;
 
-  /* Spacing */
+
   --spacing-section: 48px;
 }
 
@@ -31,7 +31,7 @@ html, body {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-/* Display campaign headline (used sparingly) */
+
 .display-campaign {
   font-family: 'Bebas Neue', 'Helvetica Now', 'Helvetica', Arial, sans-serif;
   font-size: 96px;
@@ -40,7 +40,6 @@ html, body {
   letter-spacing: 0;
 }
 
-/* Buttons */
 .btn-primary{
   background: var(--colors-ink);
   color: var(--colors-canvas);
@@ -65,44 +64,25 @@ html, body {
   font-weight: 500;
 }
 
-/* Product card baseline */
+
 .product-card{
   background: var(--colors-canvas);
   border-radius: var(--rounded-none);
   padding: 0;
 }
 
-/* Swatch dot */
-.swatch-dot{
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  display: inline-block;
-}
 
-.swatch-dot-active{
-  box-shadow: 0 0 0 2px var(--colors-ink), 0 0 0 4px var(--colors-canvas);
-}
-
-/* Sale text */
 .sale-text{ color: var(--colors-sale); }
 
-/* Hairline divider */
+
 .hairline{ border-color: var(--colors-hairline); }
 .hairline-soft{ box-shadow: inset 0 -1px 0 var(--colors-hairline-soft); }
 
-/* Utility helpers matching spec */
+
 .section-gap{ margin-top: var(--spacing-section); margin-bottom: var(--spacing-section); }
 
-/* Minimal responsive tweaks for display campaign */
-@media (max-width: 1023px){
-  .display-campaign{ font-size: 64px; }
-}
-@media (max-width: 599px){
-  .display-campaign{ font-size: 48px; }
-}
 
-/* Small utility classes to replace inline hex usages */
+
 .text-ink{ color: var(--colors-ink); }
 .text-mute{ color: var(--colors-mute); }
 .text-charcoal{ color: var(--colors-charcoal); }

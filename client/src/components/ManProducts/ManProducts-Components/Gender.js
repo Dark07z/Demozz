@@ -3,7 +3,7 @@ import React from "react";
 const Gender = ({ onToggleGender = () => {}, selectedGenders = [] }) => {
   const options = ["Men", "Women", "Unisex"];
   return (
-    <div className="flex flex-col  p-2 gap-2">
+    <div className="flex flex-col p-2 gap-2">
       <span className="mb-2">Gender</span>
       {options.map((opt) => {
         const checked = selectedGenders.includes(opt);

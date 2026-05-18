@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import Hls from "hls.js";
 import "./sliderMain.css";
 
 const MainPhoto = () => {
@@ -25,6 +26,7 @@ const MainPhoto = () => {
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const videoRefs = useRef([]);
 
   useEffect(() => {
     const autoSlide = setInterval(() => {
@@ -33,6 +35,36 @@ const MainPhoto = () => {
 
     return () => clearInterval(autoSlide);
   }, [slides.length]);
+
+  useEffect(() => {
+    slides.forEach((slide, idx) => {
+      if (slide.mediaType !== "video") return;
+      const video = videoRefs.current[idx];
+      if (!video) return;
+      const src = slide.videoUrl;
+      if (Hls.isSupported()) {
+        if (video._hlsInstance) return;
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        video._hlsInstance = hls;
+      }
+    });
+
+  }, [slides]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((v, idx) => {
+      if (idx === activeIndex) {
+        v.muted = true;
+        v.play();
+      } else {
+        try {
+          v.pause();
+        } catch (e) {}
+      }
+    });
+  }, [activeIndex]);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -64,6 +96,7 @@ const MainPhoto = () => {
                 />
               ) : slide.mediaType === "video" ? (
                 <video
+                  ref={(el) => (videoRefs.current[index] = el)}
                   className="hero-video"
                   autoPlay={index === activeIndex}
                   muted

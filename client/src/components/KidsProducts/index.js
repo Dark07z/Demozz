@@ -14,7 +14,7 @@ const KidsProducts = () => {
   }, []);
   const [rawProducts, setRawProducts] = useState([]);
   const [showFilters, setShowFilters] = useState(true);
-  const [sortBy, setSortBy] = useState("featured");
+  const [sortBy, setSortBy] = useState("a-to-z");
   const [sortOpen, setSortOpen] = useState(false);
   const [filters, setFilters] = useState({ genders: [], categories: [], saleOnly: false, maxPrice: null });
 
@@ -66,8 +66,10 @@ const KidsProducts = () => {
       sorted.sort((a, b) => normalizePrice(b.Price) - normalizePrice(a.Price));
     } else if (sortBy === "price-low-high") {
       sorted.sort((a, b) => normalizePrice(a.Price) - normalizePrice(b.Price));
-    } else if (sortBy === "newest") {
-      sorted.sort((a, b) => Number(b.Sale) - Number(a.Sale));
+    } else if (sortBy === "a-to-z") {
+      sorted.sort((a, b) => a.Title.localeCompare(b.Title));
+    } else if (sortBy === "z-to-a") {
+      sorted.sort((a, b) => b.Title.localeCompare(a.Title));
     }
 
     return sorted;
@@ -111,11 +113,11 @@ const KidsProducts = () => {
 
           {sortOpen && (
             <div className="sort-menu">
-              <button type="button" onClick={() => { setSortBy("featured"); setSortOpen(false); }}>
-                Featured
+              <button type="button" onClick={() => { setSortBy("a-to-z"); setSortOpen(false); }}>
+                A→Z
               </button>
-              <button type="button" onClick={() => { setSortBy("newest"); setSortOpen(false); }}>
-                Newest
+              <button type="button" onClick={() => { setSortBy("z-to-a"); setSortOpen(false); }}>
+                Z→A
               </button>
               <button type="button" onClick={() => { setSortBy("price-high-low"); setSortOpen(false); }}>
                 Price: High-Low

@@ -84,8 +84,8 @@ export const Favourite = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mx-auto max-w-7xl py-10 px-8">
+      <div className="mb-8 flex gap-4 flex-row sm:items-center justify-between">
         <div>
           <h1 className="mt-1 text-3xl font-medium text-[#111]">Favourites</h1>
         </div>
@@ -96,7 +96,7 @@ export const Favourite = () => {
           <h2 className="text-xl font-semibold text-[#111]">Items added to your Favourites will be saved here.</h2>
         </div>
       ) : (
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 grid-cols-3">
           {items.map((item) => (
             <div key={item._id} className="overflow-hidden rounded-[28px] bg-[#f6f6f6]">
               <div className="relative">
@@ -117,7 +117,7 @@ export const Favourite = () => {
               </div>
 
               <div className="flex flex-col gap-3 p-5">
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex justify-between gap-3">
                   <div>
                     <h2 className="text-base font-semibold text-[#111]">{item.title}</h2>
                     <p className="mt-1 text-xs text-gray-500">{item.description}</p>
