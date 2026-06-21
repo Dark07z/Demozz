@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CART_STORAGE_KEY = "nike-demo-cart";
 
@@ -50,6 +51,7 @@ const getImage = (item) => {
 
 export const Cart = () => {
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Cart. Nike VN";
@@ -203,6 +205,7 @@ export const Cart = () => {
             <button
               type="button"
               className="mt-8 w-full rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#111] transition-colors hover:bg-gray-100"
+              onClick={() => navigate("/payment")}
             >
               Checkout
             </button>

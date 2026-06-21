@@ -42,13 +42,11 @@ const MainPhoto = () => {
       const video = videoRefs.current[idx];
       if (!video) return;
       const src = slide.videoUrl;
-      if (Hls.isSupported()) {
-        if (video._hlsInstance) return;
-        const hls = new Hls();
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        video._hlsInstance = hls;
-      }
+      if (video._hlsInstance) return;
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      video._hlsInstance = hls;
     });
 
   }, [slides]);

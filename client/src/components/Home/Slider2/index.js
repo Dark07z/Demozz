@@ -54,7 +54,7 @@ const Slider2 = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     draggable: false,
-    arrows: true,
+    arrows: false,
     afterChange: (index) => setCurrentSlide(index),
   };
   return (
@@ -66,7 +66,7 @@ const Slider2 = () => {
             className={isPrevDisabled ? "is-disabled" : ""}
             disabled={isPrevDisabled}
             onClick={() => {
-              if (!isPrevDisabled) sliderRef.current.slickPrev();
+              if (!isPrevDisabled) sliderRef.current?.slickPrev();
             }}
           >
             <i className="fa-solid fa-chevron-left"></i>
@@ -75,7 +75,7 @@ const Slider2 = () => {
             className={isNextDisabled ? "is-disabled" : ""}
             disabled={isNextDisabled}
             onClick={() => {
-              if (!isNextDisabled) sliderRef.current.slickNext();
+              if (!isNextDisabled) sliderRef.current?.slickNext();
             }}
           >
             <i className="fa-solid fa-chevron-right"></i>

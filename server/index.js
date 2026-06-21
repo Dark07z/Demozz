@@ -5,11 +5,14 @@ const FormDataModel = require ('./models/FormData');
 const ProductModel = require('./models/Product');
 const WProductModel = require('./models/Women');
 const KProductModel = require('./models/Kids');
+const registerVNPayRoutes = require('./vnpay');
 
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+registerVNPayRoutes(app);
 
 mongoose.connect('mongodb://127.0.0.1:27017/NikeDB');
 

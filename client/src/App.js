@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "components/Home";
 import LoginPage from "components/NikeAuthForm/pages/LoginPage";
 import LookupPage from "components/NikeAuthForm/pages/LookupPage";
@@ -15,6 +15,9 @@ import KidsProducts from "components/KidsProducts";
 import Description from "pages/description/Description";
 import Cart from "pages/cart/Cart";
 import Favourite from "pages/favourite/Favourite";
+import CheckoutPage from "pages/payment/Checkout";
+import PaymentReturn from "pages/payment/PaymentReturn";
+import ThankYou from "pages/payment/ThankYou";
 function App() {
   return (
     <Router>
@@ -121,6 +124,9 @@ function App() {
             </>
           }
         />
+        <Route path="/payment" element={<CheckoutPage />} />
+        <Route path="/payment/return" element={<PaymentReturn />} />
+        <Route path="/thank-you" element={<ThankYou />} />
         <Route
           path="/favorites"
           element={

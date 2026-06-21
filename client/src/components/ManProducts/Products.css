@@ -45,15 +45,6 @@
   background: currentColor;
   border-radius: 999px;
 }
-
-.filter-toggle-icon::before {
-  top: 4px;
-}
-
-.filter-toggle-icon::after {
-  top: 11px;
-}
-
 .sort-toggle-icon::before {
   top: 7px;
   transform: rotate(45deg);
