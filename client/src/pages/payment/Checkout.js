@@ -44,7 +44,7 @@ const parsePrice = (value) => {
   if (typeof value === "string") {
     const normalizedValue = value.replace(/[^0-9.-]/g, "").replace(/,/g, "");
     const parsedValue = Number(normalizedValue);
-    return Number.isFinite(parsedValue) ? parsedValue : 0;
+    return parsedValue;
   }
 
   return 0;
@@ -76,14 +76,6 @@ const getImage = (item) => {
 
   return item?.image || item?.Image || "";
 };
-
-const SectionTitle = ({ eyebrow, title, description }) => (
-  <div className="space-y-3">
-    <p className="text-[15px] font-medium text-[#111]">{eyebrow}</p>
-    <h2 className="text-[18px] font-medium text-[#111]">{title}</h2>
-    {description ? <p className="max-w-[38rem] text-[15px] leading-6 text-[#707072]">{description}</p> : null}
-  </div>
-);
 
 const Field = ({ label, placeholder, className = "", type = "text", icon }) => (
   <label className="block">
@@ -139,8 +131,6 @@ const CheckoutPage = () => {
   const shipping = 0;
   const total = subtotal + shipping;
 
-  const shippingProgress = Math.min(100, Math.max(68, Math.round((subtotal / 15977000) * 100)));
-
   const createVNPayUrl = useCallback(async () => {
     if (typeof window === "undefined") {
       return;
@@ -171,15 +161,6 @@ const CheckoutPage = () => {
         payload = responseText ? JSON.parse(responseText) : null;
       } catch (error) {
         payload = null;
-      }
-
-      if (!response.ok) {
-        const fallbackMessage = responseText && responseText.trim().startsWith("<") ? "VNPay backend returned HTML instead of JSON. Check that the server is running and the route is registered." : "Không thể tạo URL thanh toán VNPay.";
-        throw new Error(payload?.message || fallbackMessage);
-      }
-
-      if (!payload?.paymentUrl) {
-        throw new Error("VNPay backend did not return a paymentUrl.");
       }
 
       window.location.assign(payload.paymentUrl);
@@ -249,9 +230,6 @@ const CheckoutPage = () => {
                 {summaryOpen ? (
                   <div className="border-t border-[#e5e5e5] px-4 py-4">
                     <SummaryRow label="Shipping" value="Free" />
-                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#ededed]">
-                      <div className="h-full rounded-full bg-[#007d48]" style={{ width: `${shippingProgress}%` }} />
-                    </div>
                     <div className="mt-4 space-y-4">
                       {previewItems.map((item) => (
                         <div key={`${item._id}-${item.size}`} className="flex gap-3">
